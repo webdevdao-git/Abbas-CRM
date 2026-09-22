@@ -27,6 +27,13 @@ export function errorHandler(err, _req, res, _next) {
     if (err.code === 'P2003') {
       return res.status(409).json({ error: 'This record is still referenced by other data.' });
     }
+    // The pooled connection was busy. Surfacing this beats a blank 500, because
+    // it says plainly that nothing was written and retrying is the right move.
+    if (err.code === 'P2024') {
+      return res.status(503).json({
+        error: 'The database is busy right now. Your change was NOT saved. Please try again.',
+      });
+    }
   }
 
   // A database check constraint rejected the write.
