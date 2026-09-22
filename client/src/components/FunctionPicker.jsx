@@ -37,12 +37,12 @@ export default function FunctionPicker({ functions, value, onChange, error }) {
                 checked ? 'border-ink-300 bg-ink-50/60' : 'border-ink-200'
               }`}
             >
-              <label className="flex flex-1 cursor-pointer items-center gap-3">
+              <label className="flex min-h-[44px] flex-1 cursor-pointer items-center gap-3 sm:min-h-0">
                 <input
                   type="checkbox"
                   checked={checked}
                   onChange={(event) => toggle(fn.key, event.target.checked)}
-                  className="h-4 w-4 rounded border-ink-300 text-ink-900 focus:ring-ink-900/20"
+                  className="checkbox"
                 />
                 <span className="min-w-0">
                   <span className={`badge ${FUNCTION_STYLE[fn.key]?.chip ?? 'bg-ink-100 text-ink-600'}`}>
@@ -65,7 +65,7 @@ export default function FunctionPicker({ functions, value, onChange, error }) {
                     inputMode="numeric"
                     value={entry.invitedCount}
                     onChange={(event) => setCount(fn.key, Number(event.target.value))}
-                    className="w-20 rounded-lg border border-ink-200 px-2.5 py-1.5 text-sm font-semibold tabular-nums focus:border-ink-900 focus:outline-none"
+                    className="min-h-[44px] w-20 rounded-lg border border-ink-200 px-2.5 text-base font-semibold tabular-nums focus:border-ink-900 focus:outline-none sm:min-h-0 sm:py-1.5 sm:text-sm"
                   />
                 </div>
               )}

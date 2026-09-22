@@ -78,10 +78,10 @@ export default function Layout({ children }) {
         <button
           type="button"
           onClick={logout}
-          className="rounded-lg p-2 text-ink-500 hover:bg-ink-50"
+          className="-mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-ink-500 hover:bg-ink-50"
           aria-label="Sign out"
         >
-          <LogOut size={18} />
+          <LogOut size={20} />
         </button>
       </header>
 
@@ -100,7 +100,7 @@ export default function Layout({ children }) {
               key={item.to}
               to={item.to}
               end={item.end}
-              className={`flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium ${
+              className={`flex min-h-[56px] flex-col items-center justify-center gap-1 py-2 text-[11px] font-medium ${
                 active ? 'text-ink-900' : 'text-ink-400'
               }`}
             >

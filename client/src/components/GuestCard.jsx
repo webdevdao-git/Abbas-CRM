@@ -20,13 +20,15 @@ export default function GuestCard({
   return (
     <div className={`card p-4 ${selected ? 'ring-2 ring-ink-900/10' : ''}`}>
       <div className="flex items-start gap-3">
-        <input
-          type="checkbox"
-          checked={selected}
-          onChange={(event) => onSelect(guest.id, event.target.checked)}
-          className="mt-1 h-4 w-4 shrink-0 rounded border-ink-300 text-ink-900 focus:ring-ink-900/20"
-          aria-label={`Select ${guest.name}`}
-        />
+        <label className="-m-2 flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center sm:m-0 sm:h-auto sm:w-auto">
+          <input
+            type="checkbox"
+            checked={selected}
+            onChange={(event) => onSelect(guest.id, event.target.checked)}
+            className="checkbox"
+            aria-label={`Select ${guest.name}`}
+          />
+        </label>
 
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink-100 text-sm font-bold text-ink-600">
           {initials(guest.name)}
@@ -43,10 +45,10 @@ export default function GuestCard({
         <button
           type="button"
           onClick={() => onOpen(guest)}
-          className="-m-1 p-1 text-ink-300"
+          className="-mr-2 -mt-2 flex h-11 w-11 items-center justify-center text-ink-300"
           aria-label="Guest details"
         >
-          <ChevronRight size={18} />
+          <ChevronRight size={20} />
         </button>
       </div>
 
@@ -74,38 +76,48 @@ export default function GuestCard({
         <StatusBadge kind="invitation" value={guest.invitationStatus} />
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-        {!isAllTab && (
+      {/* On a phone the RSVP control gets a full row of its own, so the three
+          choices stay wide enough to hit with a thumb. */}
+      {!isAllTab && (
+        <div className="mt-3 flex flex-wrap items-center gap-2">
           <RsvpButtons
             value={invitation.rsvpStatus}
             busy={busy}
             onChange={(status) => onRsvp(guest, status)}
           />
-        )}
-
-        <div className="flex items-center gap-1.5">
-          {!isAllTab && invitation.rsvpStatus === 'CONFIRMED' && (
-            <ConfirmedCountInput
-              value={invitation.confirmedCount}
-              max={invitation.invitedCount}
-              busy={busy}
-              onCommit={(count) => onCount(guest, count)}
-            />
+          {invitation.rsvpStatus === 'CONFIRMED' && (
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-medium text-ink-500 sm:hidden">People coming</span>
+              <ConfirmedCountInput
+                value={invitation.confirmedCount}
+                max={invitation.invitedCount}
+                busy={busy}
+                onCommit={(count) => onCount(guest, count)}
+              />
+            </div>
           )}
-          {guest.invitationStatus === 'SENT' && hasPending && (
-            <button
-              type="button"
-              className="btn-secondary btn-sm"
-              onClick={() => onWhatsApp(guest, 'REMINDER')}
-              title="Send reminder"
-            >
-              <Bell size={14} />
-            </button>
-          )}
-          <button type="button" className="btn-whatsapp btn-sm" onClick={() => onWhatsApp(guest, 'INVITATION')}>
-            <MessageCircle size={14} /> WhatsApp
-          </button>
         </div>
+      )}
+
+      <div className="mt-2 flex items-center gap-2">
+        {guest.invitationStatus === 'SENT' && hasPending && (
+          <button
+            type="button"
+            className="btn-secondary btn-sm btn-icon"
+            onClick={() => onWhatsApp(guest, 'REMINDER')}
+            aria-label="Send reminder"
+            title="Send reminder"
+          >
+            <Bell size={16} />
+          </button>
+        )}
+        <button
+          type="button"
+          className="btn-whatsapp btn-sm flex-1 sm:flex-none"
+          onClick={() => onWhatsApp(guest, 'INVITATION')}
+        >
+          <MessageCircle size={16} /> WhatsApp
+        </button>
       </div>
     </div>
   );

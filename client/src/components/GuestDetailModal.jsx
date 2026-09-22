@@ -59,11 +59,19 @@ export default function GuestDetailModal({
               <Pencil size={15} /> Edit
             </button>
             {guest.invitationStatus === 'SENT' && hasPending && (
-              <button type="button" className="btn-secondary" onClick={() => onWhatsApp(guest, 'REMINDER')}>
+              <button
+                type="button"
+                className="btn-secondary col-span-2 sm:col-span-1"
+                onClick={() => onWhatsApp(guest, 'REMINDER')}
+              >
                 <Bell size={15} /> Reminder
               </button>
             )}
-            <button type="button" className="btn-whatsapp" onClick={() => onWhatsApp(guest, 'INVITATION')}>
+            <button
+              type="button"
+              className="btn-whatsapp col-span-2 sm:col-span-1"
+              onClick={() => onWhatsApp(guest, 'INVITATION')}
+            >
               <MessageCircle size={15} /> Send WhatsApp
             </button>
           </>

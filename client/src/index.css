@@ -27,9 +27,10 @@
   }
 
   .btn {
-    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl border
-           px-3.5 py-2.5 text-sm font-semibold transition-colors
-           disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex min-h-[44px] select-none items-center justify-center gap-2 rounded-xl
+           border px-4 py-2.5 text-sm font-semibold transition-colors
+           disabled:cursor-not-allowed disabled:opacity-50
+           sm:min-h-0 sm:px-3.5;
   }
   .btn-primary {
     @apply btn border-ink-900 bg-ink-900 text-white hover:bg-ink-800;
@@ -44,13 +45,24 @@
     @apply btn border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700;
   }
   .btn-sm {
-    @apply px-2.5 py-1.5 text-xs;
+    @apply min-h-[42px] px-3.5 py-2 text-xs sm:min-h-0 sm:px-2.5 sm:py-1.5;
+  }
+
+  /* Icon-only buttons stay square and stay tappable. */
+  .btn-icon {
+    @apply min-h-[42px] min-w-[42px] px-0 py-0 sm:min-h-0 sm:min-w-0 sm:px-2.5 sm:py-1.5;
   }
 
   .input {
-    @apply w-full rounded-xl border border-ink-200 bg-white px-3.5 py-2.5 text-sm text-ink-900
+    @apply w-full rounded-xl border border-ink-200 bg-white px-3.5 py-3 text-base text-ink-900
            placeholder:text-ink-400 focus:border-ink-900 focus:outline-none focus:ring-2
-           focus:ring-ink-900/10;
+           focus:ring-ink-900/10 sm:py-2.5 sm:text-sm;
+  }
+
+  /* Bigger, easier to hit on a phone. */
+  .checkbox {
+    @apply h-5 w-5 shrink-0 rounded border-ink-300 text-ink-900
+           focus:ring-ink-900/20 sm:h-4 sm:w-4;
   }
   .label {
     @apply mb-1.5 block text-sm font-medium text-ink-700;

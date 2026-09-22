@@ -20,7 +20,7 @@ export default function ConfirmedCountInput({ value, max, onCommit, busy = false
     <div className="inline-flex items-center rounded-lg border border-ink-200">
       <button
         type="button"
-        className="px-2 py-1.5 text-ink-500 hover:bg-ink-50 disabled:opacity-40"
+        className="min-h-[40px] px-3 text-ink-500 hover:bg-ink-50 disabled:opacity-40 sm:min-h-0 sm:px-2 sm:py-1.5"
         onClick={() => commit(value - 1)}
         disabled={busy || value <= 0}
         aria-label="One fewer person"
@@ -37,12 +37,12 @@ export default function ConfirmedCountInput({ value, max, onCommit, busy = false
         onChange={(event) => setDraft(event.target.value)}
         onBlur={(event) => commit(event.target.value)}
         onKeyDown={(event) => event.key === 'Enter' && event.currentTarget.blur()}
-        className="w-11 border-x border-ink-200 py-1.5 text-center text-xs font-semibold tabular-nums text-ink-900 focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
+        className="w-12 self-stretch border-x border-ink-200 text-center text-sm font-semibold tabular-nums text-ink-900 focus:outline-none [appearance:textfield] sm:w-11 sm:text-xs [&::-webkit-inner-spin-button]:appearance-none"
         aria-label={`Confirmed people, maximum ${max}`}
       />
       <button
         type="button"
-        className="px-2 py-1.5 text-ink-500 hover:bg-ink-50 disabled:opacity-40"
+        className="min-h-[40px] px-3 text-ink-500 hover:bg-ink-50 disabled:opacity-40 sm:min-h-0 sm:px-2 sm:py-1.5"
         onClick={() => commit(value + 1)}
         disabled={busy || value >= max}
         aria-label="One more person"

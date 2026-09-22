@@ -32,10 +32,10 @@ export default function FunctionSummary({ fn }) {
         </div>
         <Link
           to={`/guests?function=${fn.key}`}
-          className="shrink-0 text-ink-400 hover:text-ink-700"
+          className="-mr-2 -mt-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-ink-400 hover:bg-ink-50 hover:text-ink-700"
           aria-label={`View ${fn.name} guests`}
         >
-          <ArrowRight size={18} />
+          <ArrowRight size={20} />
         </Link>
       </div>
 

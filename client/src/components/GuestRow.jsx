@@ -24,7 +24,7 @@ export default function GuestRow({
           type="checkbox"
           checked={selected}
           onChange={(event) => onSelect(guest.id, event.target.checked)}
-          className="h-4 w-4 rounded border-ink-300 text-ink-900 focus:ring-ink-900/20"
+          className="checkbox"
           aria-label={`Select ${guest.name}`}
         />
       </td>

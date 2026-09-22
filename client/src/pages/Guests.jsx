@@ -281,15 +281,20 @@ export default function Guests() {
               setSelected(new Set());
               setGuests([]);
             }}
-            className={`shrink-0 rounded-xl border px-4 py-2.5 text-sm font-semibold transition-colors ${
+            className={`min-h-[44px] shrink-0 rounded-xl border px-4 text-sm font-semibold transition-colors sm:min-h-0 sm:py-2.5 ${
               functionKey === fn.key
                 ? 'border-ink-900 bg-ink-900 text-white'
                 : 'border-ink-200 bg-white text-ink-600 hover:bg-ink-50'
             }`}
           >
             {fn.name}
+            {/* The time makes the tabs too wide to fit on a phone. */}
             {fn.time && (
-              <span className={`ml-2 text-xs font-medium ${functionKey === fn.key ? 'text-white/60' : 'text-ink-400'}`}>
+              <span
+                className={`ml-2 hidden text-xs font-medium sm:inline ${
+                  functionKey === fn.key ? 'text-white/60' : 'text-ink-400'
+                }`}
+              >
                 {fn.time}
               </span>
             )}
@@ -305,7 +310,7 @@ export default function Guests() {
             type="search"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search by name, mobile number or family…"
+            placeholder="Search name, mobile or family…"
             className="input pl-10"
             aria-label="Search guests"
           />
@@ -320,7 +325,7 @@ export default function Guests() {
                 setFilter(option.value);
                 setPage(1);
               }}
-              className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+              className={`min-h-[40px] shrink-0 rounded-full border px-3.5 text-xs font-semibold transition-colors sm:min-h-0 sm:px-3 sm:py-1.5 ${
                 filter === option.value
                   ? 'border-ink-900 bg-ink-900 text-white'
                   : 'border-ink-200 bg-white text-ink-600 hover:bg-ink-50'
@@ -420,7 +425,7 @@ export default function Guests() {
                         type="checkbox"
                         checked={allOnPageSelected}
                         onChange={(event) => toggleAll(event.target.checked)}
-                        className="h-4 w-4 rounded border-ink-300 text-ink-900 focus:ring-ink-900/20"
+                        className="checkbox"
                         aria-label="Select all on this page"
                       />
                     </th>

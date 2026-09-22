@@ -50,7 +50,8 @@ export default function Modal({ open, onClose, title, subtitle, children, footer
 
         {footer && (
           <div
-            className="flex flex-wrap items-center justify-end gap-2 border-t border-ink-100 px-5 py-4"
+            className="grid grid-cols-2 gap-2 border-t border-ink-100 px-5 py-4 [&>*]:w-full
+                       sm:flex sm:flex-wrap sm:items-center sm:justify-end sm:[&>*]:w-auto"
             style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}
           >
             {footer}
