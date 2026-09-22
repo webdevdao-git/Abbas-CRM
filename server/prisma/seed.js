@@ -134,6 +134,17 @@ async function main() {
   console.log(`✓ Message templates ready: ${TEMPLATES.length}`);
 
   // ----- sample guests -----------------------------------------------
+  // Fake guests must never reach production. Set SEED_SAMPLE_GUESTS=true to
+  // force them (useful when demoing a production-like environment).
+  const wantsSamples =
+    process.env.SEED_SAMPLE_GUESTS === 'true' ||
+    (process.env.SEED_SAMPLE_GUESTS !== 'false' && process.env.NODE_ENV !== 'production');
+
+  if (!wantsSamples) {
+    console.log('• Sample guests skipped (production).');
+    return;
+  }
+
   const existing = await prisma.guest.count({ where: { eventId: event.id } });
   if (existing > 0) {
     console.log(`• ${existing} guests already present — sample guests skipped.`);

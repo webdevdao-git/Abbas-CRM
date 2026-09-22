@@ -1,6 +1,8 @@
 node_modules/
+
+# Never commit real credentials; .env.example is the only one tracked.
+.env*
+!.env.example
 dist/
-.env
-.env.local
 .vercel
 *.log
