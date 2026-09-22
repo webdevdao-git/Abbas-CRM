@@ -50,7 +50,10 @@ async function request(path, { method = 'GET', body, signal, raw = false } = {})
     throw new ApiError('Cannot reach the server. Check your connection.', 0);
   }
 
-  if (response.status === 401) {
+  // A 401 from the login endpoint means the credentials were wrong, not that a
+  // session lapsed. Treating them alike hid the real reason behind a misleading
+  // "session expired", on a screen where nobody was signed in to begin with.
+  if (response.status === 401 && path !== '/auth/login') {
     setToken(null);
     // Let the auth layer react rather than hard-reloading mid-edit.
     window.dispatchEvent(new CustomEvent('auth:expired'));
